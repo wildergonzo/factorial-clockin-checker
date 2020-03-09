@@ -22,15 +22,8 @@ describe('factorial clock in', () => {
         let n = 0;
         let max = $$('.normal___354i1.small___2lrXH.noLabel___wEbd9').length * 2;
         let plusBtn = $$('.default___2GP40.terciary___20b_P');
-        let days = $$('.weekDay___26AC_');
-        let weekend = [];
-
-
-        for(let j=0; j < days.length; j++) {
-            if(days[j].getText() === 'Sunday' || days[j].getText() === 'Saturday') {
-                weekend.push(j);
-            }
-        }
+        let day = $$('.weekDay___26AC_');
+        let leaves = $$('.column___JEI98');
 
 
         while(i < max) {
@@ -42,26 +35,32 @@ describe('factorial clock in', () => {
                 break;
             }
 
-            fields[i].setValue('0930');
-            fields[i+1].addValue('1330');
+            if (day[n].getText() !== 'Sunday' && day[n].getText() !== 'Saturday' && leaves[n].getText() !== 'Holidays') {
 
-            //click submit
-            $('.submit___IEW1l').click();
-            //$('.base___3_J1c.utility.black___13dD7.smaller___85pB1').click();
+                fields[i].setValue('0930');
+                fields[i+1].addValue('1330');
 
-            //click (+)
-            plusBtn[n].click();
+                //click submit
+                $('.submit___IEW1l').click();
+                //$('.base___3_J1c.utility.black___13dD7.smaller___85pB1').click();
 
-            fields = $$('.normal___354i1.small___2lrXH.noLabel___wEbd9');
+                //click (+)
+                plusBtn[n].click();
 
-            fields[i+2].setValue('1400');
-            fields[i+3].addValue('1800');
+                fields = $$('.normal___354i1.small___2lrXH.noLabel___wEbd9');
 
-            $('.submit___IEW1l').click();
+                fields[i+2].setValue('1400');
+                fields[i+3].addValue('1800');
 
-            i += 4;
+                $('.submit___IEW1l').click();
+
+                i += 4;
+
+            } else {
+                i += 2;
+            }
+
             n += 1;
-
         }
 
     })
