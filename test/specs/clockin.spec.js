@@ -1,4 +1,4 @@
-import { credentials, date, day } from '../../config/config.json';
+import { credentials, date, day, clockin } from '../../config/config.json';
 
 describe('factorial clock in', () => {
     it('should fill clock in form', () => {
@@ -37,22 +37,30 @@ describe('factorial clock in', () => {
 
             if (day[n].getText() !== 'Sunday' && day[n].getText() !== 'Saturday' && leaves[n].getText() !== 'Holidays') {
 
-                fields[i].setValue('0930');
-                fields[i+1].addValue('1330');
+                fields[i].setValue(clockin.morningStart);
+                fields[i+1].addValue(clockin.morningEnd);
 
                 //click submit
                 $('.submit___IEW1l').click();
-                //$('.base___3_J1c.utility.black___13dD7.smaller___85pB1').click();
+
+                if(closeSuccessTooltip() === false){
+                    break;
+                }
 
                 //click (+)
                 plusBtn[n].click();
 
                 fields = $$('.normal___354i1.small___2lrXH.noLabel___wEbd9');
 
-                fields[i+2].setValue('1400');
-                fields[i+3].addValue('1800');
+                fields[i+2].setValue(clockin.afternoonStart);
+                fields[i+3].addValue(clockin.afternoonEnd);
 
+                //click submit
                 $('.submit___IEW1l').click();
+
+                if(closeSuccessTooltip() === false){
+                    break;
+                }
 
                 i += 4;
 
@@ -65,3 +73,14 @@ describe('factorial clock in', () => {
 
     })
 })
+
+const closeSuccessTooltip = () => {
+    try {
+        browser.waitUntil( () => {
+            return $('.base___3_J1c.utility.black___13dD7.smaller___85pB1').isDisplayed();
+        }, 3000);
+        $('.base___3_J1c.utility.black___13dD7.smaller___85pB1').click();
+    } catch {
+        return false;
+    }
+}

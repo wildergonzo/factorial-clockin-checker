@@ -6,5 +6,12 @@
     "date": {
         "year": "2020",
         "month": ""
-    }
+    },
+    "clockin": {
+        "morningStart": "0800",
+        "morningEnd": "1300",
+        "afternoonStart": "1400",
+        "afternoonEnd": "1700",
+        "fridayEnd": "1500"
+  }
 }
