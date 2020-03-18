@@ -12,6 +12,7 @@
         "morningEnd": "1300",
         "afternoonStart": "1400",
         "afternoonEnd": "1700",
-        "fridayEnd": "1500"
+        "fridayEnd": "1500",
+        "intensive": false
   }
 }
